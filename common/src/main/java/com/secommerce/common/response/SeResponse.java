@@ -28,7 +28,7 @@ public class SeResponse {
             new SeResponse(HttpStatus.BAD_REQUEST, "api.bad.request");
 
     public static final SeResponse FAILED_VALIDATION =
-            new SeResponse(HttpStatus.BAD_REQUEST, "Api.bad.request");
+            new SeResponse(HttpStatus.BAD_REQUEST, "api.failed.validation");
 
     public static final SeResponse RESOURCE_NOT_FOUND =
             new SeResponse(HttpStatus.NOT_FOUND, "resource.not.found");
