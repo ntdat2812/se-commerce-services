@@ -1,0 +1,7 @@
+services:
+  # consul
+  se-consul:
+    container_name: se-consul
+    image: consul
+    ports:
+      - "8500:8500"

@@ -13,12 +13,20 @@
 
 
     <dependencies>
+        <!-- web  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--  consul discovery  -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
 
+
+        <!--  se common  -->
         <dependency>
             <groupId>com.secommerce</groupId>
             <artifactId>common</artifactId>

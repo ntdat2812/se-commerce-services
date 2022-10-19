@@ -1,0 +1,26 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /order-service
+
+
+spring:
+  application:
+    name: order-service
+
+  cloud:
+    consul:
+      config:
+        format: FILES
+        fail-fast: false
+        enabled: true
+        prefix: config
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${random.value}
+        healthCheckPath: ${server.servlet.context-path}/actuator/health
+        healthCheckInterval: 15s
+        prefer-ip-address: true
+        register-health-check: true
+        ip-address: ${spring.cloud.client.ip-address}
