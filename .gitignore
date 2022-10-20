@@ -33,3 +33,6 @@ out/
 *.iml
 *.ipr
 *.iws
+
+# vscode
+__debug_bin.exe

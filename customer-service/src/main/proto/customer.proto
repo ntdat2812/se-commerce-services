@@ -1,7 +1,8 @@
 syntax = "proto3";
 package customer;
 
-option go_package = "grpc-service/proto";
+option java_package = "com.secommerce.customer.grpc";
+option java_outer_classname = "CustomerGrpc";
 
 // service
 service SeGrpcService {

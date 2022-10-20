@@ -4,6 +4,10 @@ server:
     context-path: /customer-service
 
 spring:
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false
+
   application:
     name: customer-service
 
