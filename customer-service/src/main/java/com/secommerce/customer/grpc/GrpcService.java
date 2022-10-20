@@ -36,7 +36,7 @@ public class GrpcService {
         List<ServiceInstance> instances = discoveryClient.getInstances(SeConstant.Service.GRPC_SERVICE);
         if (instances == null || instances.size() == 0) {
             log.error("no grpc service instances");
-            throw new SeException(HttpStatus.INTERNAL_SERVER_ERROR, "no_service_available");
+            throw new SeException(HttpStatus.INTERNAL_SERVER_ERROR, "no grpc service available");
         }
 
         ServiceInstance instance = instances.get(0);
