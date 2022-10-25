@@ -4,11 +4,14 @@ import (
 	"context"
 	"grpc-service/proto"
 	"log"
+
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
-func (s *seGRPCServer) GetAllCustomers(ctx context.Context, req *proto.GetAllCustomersReq) (*proto.Customers, error) {
 
-	log.Println("get all customers")
+func (s *seGRPCServer) GetCustomers(ctx context.Context, req *proto.GetCustomersReq) (*proto.Customers, error) {
+
+	log.Println("get customers")
 
 	
 	customers := []*proto.Customer{
@@ -21,3 +24,22 @@ func (s *seGRPCServer) GetAllCustomers(ctx context.Context, req *proto.GetAllCus
 	}, nil
 
 }
+
+func (s *seGRPCServer) GetCustomerById(ctx context.Context, in *proto.GetCustomersReq) (*proto.Customer, error) {
+	log.Println("get customer by id")
+	return &proto.Customer{FirstName: "TEST"}, nil
+
+}
+
+
+func (s *seGRPCServer) CreateCustomer(ctx context.Context, in *proto.Customer) (*wrapperspb.BoolValue, error) {
+	log.Println("create customer")
+	return &wrapperspb.BoolValue{Value: true}, nil
+}
+
+func (s *seGRPCServer) UpdateCustomer(ctx context.Context, in *proto.UpdateCustomerReq) (*wrapperspb.BoolValue, error) {
+	log.Println("update customer")
+	return &wrapperspb.BoolValue{Value: true}, nil
+
+}
+

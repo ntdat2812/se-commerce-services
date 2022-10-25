@@ -2,6 +2,7 @@ package main
 
 import (
 	"grpc-service/server"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -24,5 +25,8 @@ func main() {
 		server.Stop()
 	}()
 
-	server.Serve()	
+	err := server.Serve()	
+	if err != nil {
+		log.Fatal(err)
+	}
 }

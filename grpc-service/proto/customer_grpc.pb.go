@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +23,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SeGrpcServiceClient interface {
-	GetAllCustomers(ctx context.Context, in *GetAllCustomersReq, opts ...grpc.CallOption) (*Customers, error)
+	GetCustomers(ctx context.Context, in *GetCustomersReq, opts ...grpc.CallOption) (*Customers, error)
+	GetCustomerById(ctx context.Context, in *GetCustomersReq, opts ...grpc.CallOption) (*Customer, error)
+	CreateCustomer(ctx context.Context, in *Customer, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
+	UpdateCustomer(ctx context.Context, in *UpdateCustomerReq, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
 }
 
 type seGrpcServiceClient struct {
@@ -33,9 +37,36 @@ func NewSeGrpcServiceClient(cc grpc.ClientConnInterface) SeGrpcServiceClient {
 	return &seGrpcServiceClient{cc}
 }
 
-func (c *seGrpcServiceClient) GetAllCustomers(ctx context.Context, in *GetAllCustomersReq, opts ...grpc.CallOption) (*Customers, error) {
+func (c *seGrpcServiceClient) GetCustomers(ctx context.Context, in *GetCustomersReq, opts ...grpc.CallOption) (*Customers, error) {
 	out := new(Customers)
-	err := c.cc.Invoke(ctx, "/customer.SeGrpcService/GetAllCustomers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/customer.SeGrpcService/GetCustomers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seGrpcServiceClient) GetCustomerById(ctx context.Context, in *GetCustomersReq, opts ...grpc.CallOption) (*Customer, error) {
+	out := new(Customer)
+	err := c.cc.Invoke(ctx, "/customer.SeGrpcService/GetCustomerById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seGrpcServiceClient) CreateCustomer(ctx context.Context, in *Customer, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error) {
+	out := new(wrapperspb.BoolValue)
+	err := c.cc.Invoke(ctx, "/customer.SeGrpcService/CreateCustomer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seGrpcServiceClient) UpdateCustomer(ctx context.Context, in *UpdateCustomerReq, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error) {
+	out := new(wrapperspb.BoolValue)
+	err := c.cc.Invoke(ctx, "/customer.SeGrpcService/UpdateCustomer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +77,10 @@ func (c *seGrpcServiceClient) GetAllCustomers(ctx context.Context, in *GetAllCus
 // All implementations must embed UnimplementedSeGrpcServiceServer
 // for forward compatibility
 type SeGrpcServiceServer interface {
-	GetAllCustomers(context.Context, *GetAllCustomersReq) (*Customers, error)
+	GetCustomers(context.Context, *GetCustomersReq) (*Customers, error)
+	GetCustomerById(context.Context, *GetCustomersReq) (*Customer, error)
+	CreateCustomer(context.Context, *Customer) (*wrapperspb.BoolValue, error)
+	UpdateCustomer(context.Context, *UpdateCustomerReq) (*wrapperspb.BoolValue, error)
 	mustEmbedUnimplementedSeGrpcServiceServer()
 }
 
@@ -54,8 +88,17 @@ type SeGrpcServiceServer interface {
 type UnimplementedSeGrpcServiceServer struct {
 }
 
-func (UnimplementedSeGrpcServiceServer) GetAllCustomers(context.Context, *GetAllCustomersReq) (*Customers, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllCustomers not implemented")
+func (UnimplementedSeGrpcServiceServer) GetCustomers(context.Context, *GetCustomersReq) (*Customers, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustomers not implemented")
+}
+func (UnimplementedSeGrpcServiceServer) GetCustomerById(context.Context, *GetCustomersReq) (*Customer, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerById not implemented")
+}
+func (UnimplementedSeGrpcServiceServer) CreateCustomer(context.Context, *Customer) (*wrapperspb.BoolValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomer not implemented")
+}
+func (UnimplementedSeGrpcServiceServer) UpdateCustomer(context.Context, *UpdateCustomerReq) (*wrapperspb.BoolValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCustomer not implemented")
 }
 func (UnimplementedSeGrpcServiceServer) mustEmbedUnimplementedSeGrpcServiceServer() {}
 
@@ -70,20 +113,74 @@ func RegisterSeGrpcServiceServer(s grpc.ServiceRegistrar, srv SeGrpcServiceServe
 	s.RegisterService(&SeGrpcService_ServiceDesc, srv)
 }
 
-func _SeGrpcService_GetAllCustomers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAllCustomersReq)
+func _SeGrpcService_GetCustomers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCustomersReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeGrpcServiceServer).GetAllCustomers(ctx, in)
+		return srv.(SeGrpcServiceServer).GetCustomers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/customer.SeGrpcService/GetAllCustomers",
+		FullMethod: "/customer.SeGrpcService/GetCustomers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeGrpcServiceServer).GetAllCustomers(ctx, req.(*GetAllCustomersReq))
+		return srv.(SeGrpcServiceServer).GetCustomers(ctx, req.(*GetCustomersReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SeGrpcService_GetCustomerById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCustomersReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeGrpcServiceServer).GetCustomerById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/customer.SeGrpcService/GetCustomerById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeGrpcServiceServer).GetCustomerById(ctx, req.(*GetCustomersReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SeGrpcService_CreateCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Customer)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeGrpcServiceServer).CreateCustomer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/customer.SeGrpcService/CreateCustomer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeGrpcServiceServer).CreateCustomer(ctx, req.(*Customer))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SeGrpcService_UpdateCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCustomerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeGrpcServiceServer).UpdateCustomer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/customer.SeGrpcService/UpdateCustomer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeGrpcServiceServer).UpdateCustomer(ctx, req.(*UpdateCustomerReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +193,20 @@ var SeGrpcService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SeGrpcServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetAllCustomers",
-			Handler:    _SeGrpcService_GetAllCustomers_Handler,
+			MethodName: "GetCustomers",
+			Handler:    _SeGrpcService_GetCustomers_Handler,
+		},
+		{
+			MethodName: "GetCustomerById",
+			Handler:    _SeGrpcService_GetCustomerById_Handler,
+		},
+		{
+			MethodName: "CreateCustomer",
+			Handler:    _SeGrpcService_CreateCustomer_Handler,
+		},
+		{
+			MethodName: "UpdateCustomer",
+			Handler:    _SeGrpcService_UpdateCustomer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
