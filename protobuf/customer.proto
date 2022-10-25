@@ -1,0 +1,49 @@
+syntax = "proto3";
+package customer;
+
+option go_package = "grpc-service/proto";
+
+import "google/protobuf/wrappers.proto";
+
+
+// service
+service SeGrpcService {
+    
+    rpc GetCustomers (GetCustomersReq) returns (Customers) {}
+    rpc GetCustomerById (GetCustomersReq) returns (Customer) {}
+    rpc CreateCustomer (Customer) returns (google.protobuf.BoolValue) {}
+    rpc UpdateCustomer (UpdateCustomerReq) returns (google.protobuf.BoolValue) {}
+}
+
+
+
+// model
+enum Gender {
+  MALE = 0;
+  FEMALE = 1;
+}
+
+message Customers {
+  repeated Customer customers = 1;
+}
+
+message Customer {
+    string first_name = 1;
+    string last_name = 2;
+    string email = 3;
+    string phone = 4;
+    Gender gender = 5;
+    string user_name = 6;
+    string password = 7;
+}
+
+
+// request
+message GetCustomersReq {
+
+}
+
+message UpdateCustomerReq {
+    Customer customer = 1;
+    repeated string fields = 2;
+}
