@@ -88,7 +88,7 @@
                             <includeMavenTypes>direct</includeMavenTypes>
 
                             <inputDirectories>
-                                <include>src/main/proto</include>
+                                <include>../protobuf/</include>
                             </inputDirectories>
 
                             <outputTargets>

@@ -26,10 +26,10 @@ public class GrpcService {
 
         SeGrpcServiceGrpc.SeGrpcServiceBlockingStub stub = SeGrpcServiceGrpc.newBlockingStub(channel);
 
-        CustomerGrpc.GetAllCustomersReq request = CustomerGrpc.
-                GetAllCustomersReq.newBuilder().build();
+        CustomerGrpc.GetCustomersReq request = CustomerGrpc.
+                GetCustomersReq.newBuilder().build();
 
-        return stub.getAllCustomers(request);
+        return stub.getCustomers(request);
     }
 
     public ManagedChannel getChannel() {
