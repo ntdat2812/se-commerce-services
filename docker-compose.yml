@@ -5,3 +5,12 @@ services:
     image: consul
     ports:
       - "8500:8500"
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: product_db
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: password

@@ -972,6 +972,30 @@ public final class CustomerGrpc {
      * @return The gender.
      */
     com.secommerce.customer.grpc.CustomerGrpc.Gender getGender();
+
+    /**
+     * <code>string user_name = 6;</code>
+     * @return The userName.
+     */
+    java.lang.String getUserName();
+    /**
+     * <code>string user_name = 6;</code>
+     * @return The bytes for userName.
+     */
+    com.google.protobuf.ByteString
+        getUserNameBytes();
+
+    /**
+     * <code>string password = 7;</code>
+     * @return The password.
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>string password = 7;</code>
+     * @return The bytes for password.
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
   }
   /**
    * Protobuf type {@code customer.Customer}
@@ -991,6 +1015,8 @@ public final class CustomerGrpc {
       email_ = "";
       phone_ = "";
       gender_ = 0;
+      userName_ = "";
+      password_ = "";
     }
 
     @java.lang.Override
@@ -1051,6 +1077,18 @@ public final class CustomerGrpc {
               int rawValue = input.readEnum();
 
               gender_ = rawValue;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userName_ = s;
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              password_ = s;
               break;
             }
             default: {
@@ -1248,6 +1286,78 @@ public final class CustomerGrpc {
       return result == null ? com.secommerce.customer.grpc.CustomerGrpc.Gender.UNRECOGNIZED : result;
     }
 
+    public static final int USER_NAME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object userName_;
+    /**
+     * <code>string user_name = 6;</code>
+     * @return The userName.
+     */
+    public java.lang.String getUserName() {
+      java.lang.Object ref = userName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string user_name = 6;</code>
+     * @return The bytes for userName.
+     */
+    public com.google.protobuf.ByteString
+        getUserNameBytes() {
+      java.lang.Object ref = userName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 7;
+    private volatile java.lang.Object password_;
+    /**
+     * <code>string password = 7;</code>
+     * @return The password.
+     */
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        password_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string password = 7;</code>
+     * @return The bytes for password.
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1277,6 +1387,12 @@ public final class CustomerGrpc {
       if (gender_ != com.secommerce.customer.grpc.CustomerGrpc.Gender.MALE.getNumber()) {
         output.writeEnum(5, gender_);
       }
+      if (!getUserNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, userName_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, password_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1302,6 +1418,12 @@ public final class CustomerGrpc {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, gender_);
       }
+      if (!getUserNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, userName_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, password_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1326,6 +1448,10 @@ public final class CustomerGrpc {
       if (!getPhone()
           .equals(other.getPhone())) return false;
       if (gender_ != other.gender_) return false;
+      if (!getUserName()
+          .equals(other.getUserName())) return false;
+      if (!getPassword()
+          .equals(other.getPassword())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1347,6 +1473,10 @@ public final class CustomerGrpc {
       hash = (53 * hash) + getPhone().hashCode();
       hash = (37 * hash) + GENDER_FIELD_NUMBER;
       hash = (53 * hash) + gender_;
+      hash = (37 * hash) + USER_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUserName().hashCode();
+      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+      hash = (53 * hash) + getPassword().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1490,6 +1620,10 @@ public final class CustomerGrpc {
 
         gender_ = 0;
 
+        userName_ = "";
+
+        password_ = "";
+
         return this;
       }
 
@@ -1521,6 +1655,8 @@ public final class CustomerGrpc {
         result.email_ = email_;
         result.phone_ = phone_;
         result.gender_ = gender_;
+        result.userName_ = userName_;
+        result.password_ = password_;
         onBuilt();
         return result;
       }
@@ -1587,6 +1723,14 @@ public final class CustomerGrpc {
         }
         if (other.gender_ != 0) {
           setGenderValue(other.getGenderValue());
+        }
+        if (!other.getUserName().isEmpty()) {
+          userName_ = other.userName_;
+          onChanged();
+        }
+        if (!other.getPassword().isEmpty()) {
+          password_ = other.password_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1972,6 +2116,158 @@ public final class CustomerGrpc {
         onChanged();
         return this;
       }
+
+      private java.lang.Object userName_ = "";
+      /**
+       * <code>string user_name = 6;</code>
+       * @return The userName.
+       */
+      public java.lang.String getUserName() {
+        java.lang.Object ref = userName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          userName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string user_name = 6;</code>
+       * @return The bytes for userName.
+       */
+      public com.google.protobuf.ByteString
+          getUserNameBytes() {
+        java.lang.Object ref = userName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          userName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string user_name = 6;</code>
+       * @param value The userName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUserName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string user_name = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUserName() {
+        
+        userName_ = getDefaultInstance().getUserName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string user_name = 6;</code>
+       * @param value The bytes for userName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUserNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object password_ = "";
+      /**
+       * <code>string password = 7;</code>
+       * @return The password.
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string password = 7;</code>
+       * @return The bytes for password.
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string password = 7;</code>
+       * @param value The password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPassword() {
+        
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 7;</code>
+       * @param value The bytes for password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        password_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2025,8 +2321,8 @@ public final class CustomerGrpc {
 
   }
 
-  public interface GetAllCustomersReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:customer.GetAllCustomersReq)
+  public interface GetCustomersReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:customer.GetCustomersReq)
       com.google.protobuf.MessageOrBuilder {
   }
   /**
@@ -2034,25 +2330,25 @@ public final class CustomerGrpc {
    * request
    * </pre>
    *
-   * Protobuf type {@code customer.GetAllCustomersReq}
+   * Protobuf type {@code customer.GetCustomersReq}
    */
-  public  static final class GetAllCustomersReq extends
+  public  static final class GetCustomersReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:customer.GetAllCustomersReq)
-      GetAllCustomersReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:customer.GetCustomersReq)
+      GetCustomersReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetAllCustomersReq.newBuilder() to construct.
-    private GetAllCustomersReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use GetCustomersReq.newBuilder() to construct.
+    private GetCustomersReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetAllCustomersReq() {
+    private GetCustomersReq() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new GetAllCustomersReq();
+      return new GetCustomersReq();
     }
 
     @java.lang.Override
@@ -2060,7 +2356,7 @@ public final class CustomerGrpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetAllCustomersReq(
+    private GetCustomersReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2099,15 +2395,15 @@ public final class CustomerGrpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetAllCustomersReq_descriptor;
+      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetCustomersReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetAllCustomersReq_fieldAccessorTable
+      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetCustomersReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.class, com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.Builder.class);
+              com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.class, com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.Builder.class);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2143,10 +2439,10 @@ public final class CustomerGrpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq)) {
+      if (!(obj instanceof com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq)) {
         return super.equals(obj);
       }
-      com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq other = (com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq) obj;
+      com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq other = (com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq) obj;
 
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -2164,69 +2460,69 @@ public final class CustomerGrpc {
       return hash;
     }
 
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(byte[] data)
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(java.io.InputStream input)
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseDelimitedFrom(java.io.InputStream input)
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseDelimitedFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parseFrom(
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2239,7 +2535,7 @@ public final class CustomerGrpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq prototype) {
+    public static Builder newBuilder(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2259,26 +2555,26 @@ public final class CustomerGrpc {
      * request
      * </pre>
      *
-     * Protobuf type {@code customer.GetAllCustomersReq}
+     * Protobuf type {@code customer.GetCustomersReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:customer.GetAllCustomersReq)
-        com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:customer.GetCustomersReq)
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetAllCustomersReq_descriptor;
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetCustomersReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetAllCustomersReq_fieldAccessorTable
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetCustomersReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.class, com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.Builder.class);
+                com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.class, com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.Builder.class);
       }
 
-      // Construct using com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.newBuilder()
+      // Construct using com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2302,17 +2598,17 @@ public final class CustomerGrpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetAllCustomersReq_descriptor;
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_GetCustomersReq_descriptor;
       }
 
       @java.lang.Override
-      public com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq getDefaultInstanceForType() {
-        return com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.getDefaultInstance();
+      public com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq getDefaultInstanceForType() {
+        return com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq build() {
-        com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq result = buildPartial();
+      public com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq build() {
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2320,8 +2616,8 @@ public final class CustomerGrpc {
       }
 
       @java.lang.Override
-      public com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq buildPartial() {
-        com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq result = new com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq(this);
+      public com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq buildPartial() {
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq result = new com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq(this);
         onBuilt();
         return result;
       }
@@ -2360,16 +2656,16 @@ public final class CustomerGrpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq) {
-          return mergeFrom((com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq)other);
+        if (other instanceof com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq) {
+          return mergeFrom((com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq other) {
-        if (other == com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq other) {
+        if (other == com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.getDefaultInstance()) return this;
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -2385,11 +2681,11 @@ public final class CustomerGrpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq parsedMessage = null;
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq) e.getUnfinishedMessage();
+          parsedMessage = (com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2411,41 +2707,879 @@ public final class CustomerGrpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:customer.GetAllCustomersReq)
+      // @@protoc_insertion_point(builder_scope:customer.GetCustomersReq)
     }
 
-    // @@protoc_insertion_point(class_scope:customer.GetAllCustomersReq)
-    private static final com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:customer.GetCustomersReq)
+    private static final com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq();
+      DEFAULT_INSTANCE = new com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq();
     }
 
-    public static com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq getDefaultInstance() {
+    public static com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetAllCustomersReq>
-        PARSER = new com.google.protobuf.AbstractParser<GetAllCustomersReq>() {
+    private static final com.google.protobuf.Parser<GetCustomersReq>
+        PARSER = new com.google.protobuf.AbstractParser<GetCustomersReq>() {
       @java.lang.Override
-      public GetAllCustomersReq parsePartialFrom(
+      public GetCustomersReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetAllCustomersReq(input, extensionRegistry);
+        return new GetCustomersReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetAllCustomersReq> parser() {
+    public static com.google.protobuf.Parser<GetCustomersReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetAllCustomersReq> getParserForType() {
+    public com.google.protobuf.Parser<GetCustomersReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq getDefaultInstanceForType() {
+    public com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateCustomerReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:customer.UpdateCustomerReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     * @return Whether the customer field is set.
+     */
+    boolean hasCustomer();
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     * @return The customer.
+     */
+    com.secommerce.customer.grpc.CustomerGrpc.Customer getCustomer();
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     */
+    com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder getCustomerOrBuilder();
+
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @return A list containing the fields.
+     */
+    java.util.List<java.lang.String>
+        getFieldsList();
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @return The count of fields.
+     */
+    int getFieldsCount();
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @param index The index of the element to return.
+     * @return The fields at the given index.
+     */
+    java.lang.String getFields(int index);
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the fields at the given index.
+     */
+    com.google.protobuf.ByteString
+        getFieldsBytes(int index);
+  }
+  /**
+   * Protobuf type {@code customer.UpdateCustomerReq}
+   */
+  public  static final class UpdateCustomerReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:customer.UpdateCustomerReq)
+      UpdateCustomerReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateCustomerReq.newBuilder() to construct.
+    private UpdateCustomerReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateCustomerReq() {
+      fields_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new UpdateCustomerReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateCustomerReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder subBuilder = null;
+              if (customer_ != null) {
+                subBuilder = customer_.toBuilder();
+              }
+              customer_ = input.readMessage(com.secommerce.customer.grpc.CustomerGrpc.Customer.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(customer_);
+                customer_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                fields_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              fields_.add(s);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          fields_ = fields_.getUnmodifiableView();
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_UpdateCustomerReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_UpdateCustomerReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.class, com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.Builder.class);
+    }
+
+    public static final int CUSTOMER_FIELD_NUMBER = 1;
+    private com.secommerce.customer.grpc.CustomerGrpc.Customer customer_;
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     * @return Whether the customer field is set.
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     * @return The customer.
+     */
+    public com.secommerce.customer.grpc.CustomerGrpc.Customer getCustomer() {
+      return customer_ == null ? com.secommerce.customer.grpc.CustomerGrpc.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>.customer.Customer customer = 1;</code>
+     */
+    public com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder getCustomerOrBuilder() {
+      return getCustomer();
+    }
+
+    public static final int FIELDS_FIELD_NUMBER = 2;
+    private com.google.protobuf.LazyStringList fields_;
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @return A list containing the fields.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getFieldsList() {
+      return fields_;
+    }
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @return The count of fields.
+     */
+    public int getFieldsCount() {
+      return fields_.size();
+    }
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @param index The index of the element to return.
+     * @return The fields at the given index.
+     */
+    public java.lang.String getFields(int index) {
+      return fields_.get(index);
+    }
+    /**
+     * <code>repeated string fields = 2;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the fields at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getFieldsBytes(int index) {
+      return fields_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (customer_ != null) {
+        output.writeMessage(1, getCustomer());
+      }
+      for (int i = 0; i < fields_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fields_.getRaw(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getCustomer());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < fields_.size(); i++) {
+          dataSize += computeStringSizeNoTag(fields_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getFieldsList().size();
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq)) {
+        return super.equals(obj);
+      }
+      com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq other = (com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq) obj;
+
+      if (hasCustomer() != other.hasCustomer()) return false;
+      if (hasCustomer()) {
+        if (!getCustomer()
+            .equals(other.getCustomer())) return false;
+      }
+      if (!getFieldsList()
+          .equals(other.getFieldsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasCustomer()) {
+        hash = (37 * hash) + CUSTOMER_FIELD_NUMBER;
+        hash = (53 * hash) + getCustomer().hashCode();
+      }
+      if (getFieldsCount() > 0) {
+        hash = (37 * hash) + FIELDS_FIELD_NUMBER;
+        hash = (53 * hash) + getFieldsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code customer.UpdateCustomerReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:customer.UpdateCustomerReq)
+        com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_UpdateCustomerReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_UpdateCustomerReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.class, com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.Builder.class);
+      }
+
+      // Construct using com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (customerBuilder_ == null) {
+          customer_ = null;
+        } else {
+          customer_ = null;
+          customerBuilder_ = null;
+        }
+        fields_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.secommerce.customer.grpc.CustomerGrpc.internal_static_customer_UpdateCustomerReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq getDefaultInstanceForType() {
+        return com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq build() {
+        com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq buildPartial() {
+        com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq result = new com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq(this);
+        int from_bitField0_ = bitField0_;
+        if (customerBuilder_ == null) {
+          result.customer_ = customer_;
+        } else {
+          result.customer_ = customerBuilder_.build();
+        }
+        if (((bitField0_ & 0x00000001) != 0)) {
+          fields_ = fields_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.fields_ = fields_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq) {
+          return mergeFrom((com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq other) {
+        if (other == com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.getDefaultInstance()) return this;
+        if (other.hasCustomer()) {
+          mergeCustomer(other.getCustomer());
+        }
+        if (!other.fields_.isEmpty()) {
+          if (fields_.isEmpty()) {
+            fields_ = other.fields_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFieldsIsMutable();
+            fields_.addAll(other.fields_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.secommerce.customer.grpc.CustomerGrpc.Customer customer_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.secommerce.customer.grpc.CustomerGrpc.Customer, com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder, com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder> customerBuilder_;
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       * @return Whether the customer field is set.
+       */
+      public boolean hasCustomer() {
+        return customerBuilder_ != null || customer_ != null;
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       * @return The customer.
+       */
+      public com.secommerce.customer.grpc.CustomerGrpc.Customer getCustomer() {
+        if (customerBuilder_ == null) {
+          return customer_ == null ? com.secommerce.customer.grpc.CustomerGrpc.Customer.getDefaultInstance() : customer_;
+        } else {
+          return customerBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public Builder setCustomer(com.secommerce.customer.grpc.CustomerGrpc.Customer value) {
+        if (customerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          customer_ = value;
+          onChanged();
+        } else {
+          customerBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public Builder setCustomer(
+          com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder builderForValue) {
+        if (customerBuilder_ == null) {
+          customer_ = builderForValue.build();
+          onChanged();
+        } else {
+          customerBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public Builder mergeCustomer(com.secommerce.customer.grpc.CustomerGrpc.Customer value) {
+        if (customerBuilder_ == null) {
+          if (customer_ != null) {
+            customer_ =
+              com.secommerce.customer.grpc.CustomerGrpc.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+          } else {
+            customer_ = value;
+          }
+          onChanged();
+        } else {
+          customerBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public Builder clearCustomer() {
+        if (customerBuilder_ == null) {
+          customer_ = null;
+          onChanged();
+        } else {
+          customer_ = null;
+          customerBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder getCustomerBuilder() {
+        
+        onChanged();
+        return getCustomerFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      public com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder getCustomerOrBuilder() {
+        if (customerBuilder_ != null) {
+          return customerBuilder_.getMessageOrBuilder();
+        } else {
+          return customer_ == null ?
+              com.secommerce.customer.grpc.CustomerGrpc.Customer.getDefaultInstance() : customer_;
+        }
+      }
+      /**
+       * <code>.customer.Customer customer = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.secommerce.customer.grpc.CustomerGrpc.Customer, com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder, com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder> 
+          getCustomerFieldBuilder() {
+        if (customerBuilder_ == null) {
+          customerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.secommerce.customer.grpc.CustomerGrpc.Customer, com.secommerce.customer.grpc.CustomerGrpc.Customer.Builder, com.secommerce.customer.grpc.CustomerGrpc.CustomerOrBuilder>(
+                  getCustomer(),
+                  getParentForChildren(),
+                  isClean());
+          customer_ = null;
+        }
+        return customerBuilder_;
+      }
+
+      private com.google.protobuf.LazyStringList fields_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureFieldsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          fields_ = new com.google.protobuf.LazyStringArrayList(fields_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @return A list containing the fields.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getFieldsList() {
+        return fields_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @return The count of fields.
+       */
+      public int getFieldsCount() {
+        return fields_.size();
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param index The index of the element to return.
+       * @return The fields at the given index.
+       */
+      public java.lang.String getFields(int index) {
+        return fields_.get(index);
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the fields at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getFieldsBytes(int index) {
+        return fields_.getByteString(index);
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param index The index to set the value at.
+       * @param value The fields to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFields(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFieldsIsMutable();
+        fields_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param value The fields to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFields(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFieldsIsMutable();
+        fields_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param values The fields to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllFields(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureFieldsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, fields_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFields() {
+        fields_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fields = 2;</code>
+       * @param value The bytes of the fields to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFieldsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureFieldsIsMutable();
+        fields_.add(value);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:customer.UpdateCustomerReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:customer.UpdateCustomerReq)
+    private static final com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq();
+    }
+
+    public static com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateCustomerReq>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateCustomerReq>() {
+      @java.lang.Override
+      public UpdateCustomerReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateCustomerReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateCustomerReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateCustomerReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2462,10 +3596,15 @@ public final class CustomerGrpc {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_customer_Customer_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_customer_GetAllCustomersReq_descriptor;
+    internal_static_customer_GetCustomersReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_customer_GetAllCustomersReq_fieldAccessorTable;
+      internal_static_customer_GetCustomersReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_customer_UpdateCustomerReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_customer_UpdateCustomerReq_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2475,20 +3614,30 @@ public final class CustomerGrpc {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016customer.proto\022\010customer\"2\n\tCustomers\022" +
-      "%\n\tcustomers\030\001 \003(\0132\022.customer.Customer\"q" +
-      "\n\010Customer\022\022\n\nfirst_name\030\001 \001(\t\022\021\n\tlast_n" +
-      "ame\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022" +
-      " \n\006gender\030\005 \001(\0162\020.customer.Gender\"\024\n\022Get" +
-      "AllCustomersReq*\036\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006F" +
-      "EMALE\020\0012W\n\rSeGrpcService\022F\n\017GetAllCustom" +
-      "ers\022\034.customer.GetAllCustomersReq\032\023.cust" +
-      "omer.Customers\"\000B,\n\034com.secommerce.custo" +
-      "mer.grpcB\014CustomerGrpcb\006proto3"
+      "\n\016customer.proto\022\010customer\032\036google/proto" +
+      "buf/wrappers.proto\"2\n\tCustomers\022%\n\tcusto" +
+      "mers\030\001 \003(\0132\022.customer.Customer\"\226\001\n\010Custo" +
+      "mer\022\022\n\nfirst_name\030\001 \001(\t\022\021\n\tlast_name\030\002 \001" +
+      "(\t\022\r\n\005email\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022 \n\006gend" +
+      "er\030\005 \001(\0162\020.customer.Gender\022\021\n\tuser_name\030" +
+      "\006 \001(\t\022\020\n\010password\030\007 \001(\t\"\021\n\017GetCustomersR" +
+      "eq\"I\n\021UpdateCustomerReq\022$\n\010customer\030\001 \001(" +
+      "\0132\022.customer.Customer\022\016\n\006fields\030\002 \003(\t*\036\n" +
+      "\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\0012\246\002\n\rSeGrpc" +
+      "Service\022@\n\014GetCustomers\022\031.customer.GetCu" +
+      "stomersReq\032\023.customer.Customers\"\000\022B\n\017Get" +
+      "CustomerById\022\031.customer.GetCustomersReq\032" +
+      "\022.customer.Customer\"\000\022B\n\016CreateCustomer\022" +
+      "\022.customer.Customer\032\032.google.protobuf.Bo" +
+      "olValue\"\000\022K\n\016UpdateCustomer\022\033.customer.U" +
+      "pdateCustomerReq\032\032.google.protobuf.BoolV" +
+      "alue\"\000B@\n\034com.secommerce.customer.grpcB\014" +
+      "CustomerGrpcZ\022grpc-service/protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.WrappersProto.getDescriptor(),
         });
     internal_static_customer_Customers_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -2501,13 +3650,20 @@ public final class CustomerGrpc {
     internal_static_customer_Customer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_customer_Customer_descriptor,
-        new java.lang.String[] { "FirstName", "LastName", "Email", "Phone", "Gender", });
-    internal_static_customer_GetAllCustomersReq_descriptor =
+        new java.lang.String[] { "FirstName", "LastName", "Email", "Phone", "Gender", "UserName", "Password", });
+    internal_static_customer_GetCustomersReq_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_customer_GetAllCustomersReq_fieldAccessorTable = new
+    internal_static_customer_GetCustomersReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_customer_GetAllCustomersReq_descriptor,
+        internal_static_customer_GetCustomersReq_descriptor,
         new java.lang.String[] { });
+    internal_static_customer_UpdateCustomerReq_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_customer_UpdateCustomerReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_customer_UpdateCustomerReq_descriptor,
+        new java.lang.String[] { "Customer", "Fields", });
+    com.google.protobuf.WrappersProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

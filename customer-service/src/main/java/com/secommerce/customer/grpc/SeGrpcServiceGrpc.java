@@ -1,18 +1,10 @@
 package com.secommerce.customer.grpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -30,36 +22,132 @@ public final class SeGrpcServiceGrpc {
   public static final String SERVICE_NAME = "customer.SeGrpcService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq,
-      com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetAllCustomersMethod;
+  private static volatile io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
+      com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetCustomersMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetAllCustomers",
-      requestType = com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.class,
+      fullMethodName = SERVICE_NAME + '/' + "GetCustomers",
+      requestType = com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.class,
       responseType = com.secommerce.customer.grpc.CustomerGrpc.Customers.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq,
-      com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetAllCustomersMethod() {
-    io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetAllCustomersMethod;
-    if ((getGetAllCustomersMethod = SeGrpcServiceGrpc.getGetAllCustomersMethod) == null) {
+  public static io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
+      com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetCustomersMethod() {
+    io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customers> getGetCustomersMethod;
+    if ((getGetCustomersMethod = SeGrpcServiceGrpc.getGetCustomersMethod) == null) {
       synchronized (SeGrpcServiceGrpc.class) {
-        if ((getGetAllCustomersMethod = SeGrpcServiceGrpc.getGetAllCustomersMethod) == null) {
-          SeGrpcServiceGrpc.getGetAllCustomersMethod = getGetAllCustomersMethod = 
-              io.grpc.MethodDescriptor.<com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customers>newBuilder()
+        if ((getGetCustomersMethod = SeGrpcServiceGrpc.getGetCustomersMethod) == null) {
+          SeGrpcServiceGrpc.getGetCustomersMethod = getGetCustomersMethod = 
+              io.grpc.MethodDescriptor.<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customers>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "customer.SeGrpcService", "GetAllCustomers"))
+                  "customer.SeGrpcService", "GetCustomers"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq.getDefaultInstance()))
+                  com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.secommerce.customer.grpc.CustomerGrpc.Customers.getDefaultInstance()))
-                  .setSchemaDescriptor(new SeGrpcServiceMethodDescriptorSupplier("GetAllCustomers"))
+                  .setSchemaDescriptor(new SeGrpcServiceMethodDescriptorSupplier("GetCustomers"))
                   .build();
           }
         }
      }
-     return getGetAllCustomersMethod;
+     return getGetCustomersMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
+      com.secommerce.customer.grpc.CustomerGrpc.Customer> getGetCustomerByIdMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetCustomerById",
+      requestType = com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.class,
+      responseType = com.secommerce.customer.grpc.CustomerGrpc.Customer.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
+      com.secommerce.customer.grpc.CustomerGrpc.Customer> getGetCustomerByIdMethod() {
+    io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customer> getGetCustomerByIdMethod;
+    if ((getGetCustomerByIdMethod = SeGrpcServiceGrpc.getGetCustomerByIdMethod) == null) {
+      synchronized (SeGrpcServiceGrpc.class) {
+        if ((getGetCustomerByIdMethod = SeGrpcServiceGrpc.getGetCustomerByIdMethod) == null) {
+          SeGrpcServiceGrpc.getGetCustomerByIdMethod = getGetCustomerByIdMethod = 
+              io.grpc.MethodDescriptor.<com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq, com.secommerce.customer.grpc.CustomerGrpc.Customer>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "customer.SeGrpcService", "GetCustomerById"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.secommerce.customer.grpc.CustomerGrpc.Customer.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeGrpcServiceMethodDescriptorSupplier("GetCustomerById"))
+                  .build();
+          }
+        }
+     }
+     return getGetCustomerByIdMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.Customer,
+      com.google.protobuf.BoolValue> getCreateCustomerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CreateCustomer",
+      requestType = com.secommerce.customer.grpc.CustomerGrpc.Customer.class,
+      responseType = com.google.protobuf.BoolValue.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.Customer,
+      com.google.protobuf.BoolValue> getCreateCustomerMethod() {
+    io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.Customer, com.google.protobuf.BoolValue> getCreateCustomerMethod;
+    if ((getCreateCustomerMethod = SeGrpcServiceGrpc.getCreateCustomerMethod) == null) {
+      synchronized (SeGrpcServiceGrpc.class) {
+        if ((getCreateCustomerMethod = SeGrpcServiceGrpc.getCreateCustomerMethod) == null) {
+          SeGrpcServiceGrpc.getCreateCustomerMethod = getCreateCustomerMethod = 
+              io.grpc.MethodDescriptor.<com.secommerce.customer.grpc.CustomerGrpc.Customer, com.google.protobuf.BoolValue>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "customer.SeGrpcService", "CreateCustomer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.secommerce.customer.grpc.CustomerGrpc.Customer.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.BoolValue.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeGrpcServiceMethodDescriptorSupplier("CreateCustomer"))
+                  .build();
+          }
+        }
+     }
+     return getCreateCustomerMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq,
+      com.google.protobuf.BoolValue> getUpdateCustomerMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateCustomer",
+      requestType = com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.class,
+      responseType = com.google.protobuf.BoolValue.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq,
+      com.google.protobuf.BoolValue> getUpdateCustomerMethod() {
+    io.grpc.MethodDescriptor<com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq, com.google.protobuf.BoolValue> getUpdateCustomerMethod;
+    if ((getUpdateCustomerMethod = SeGrpcServiceGrpc.getUpdateCustomerMethod) == null) {
+      synchronized (SeGrpcServiceGrpc.class) {
+        if ((getUpdateCustomerMethod = SeGrpcServiceGrpc.getUpdateCustomerMethod) == null) {
+          SeGrpcServiceGrpc.getUpdateCustomerMethod = getUpdateCustomerMethod = 
+              io.grpc.MethodDescriptor.<com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq, com.google.protobuf.BoolValue>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "customer.SeGrpcService", "UpdateCustomer"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.BoolValue.getDefaultInstance()))
+                  .setSchemaDescriptor(new SeGrpcServiceMethodDescriptorSupplier("UpdateCustomer"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateCustomerMethod;
   }
 
   /**
@@ -94,20 +182,62 @@ public final class SeGrpcServiceGrpc {
 
     /**
      */
-    public void getAllCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq request,
+    public void getCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request,
         io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customers> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetAllCustomersMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getGetCustomersMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getCustomerById(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request,
+        io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customer> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetCustomerByIdMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void createCustomer(com.secommerce.customer.grpc.CustomerGrpc.Customer request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+      asyncUnimplementedUnaryCall(getCreateCustomerMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void updateCustomer(com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateCustomerMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getGetAllCustomersMethod(),
+            getGetCustomersMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq,
+                com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
                 com.secommerce.customer.grpc.CustomerGrpc.Customers>(
-                  this, METHODID_GET_ALL_CUSTOMERS)))
+                  this, METHODID_GET_CUSTOMERS)))
+          .addMethod(
+            getGetCustomerByIdMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq,
+                com.secommerce.customer.grpc.CustomerGrpc.Customer>(
+                  this, METHODID_GET_CUSTOMER_BY_ID)))
+          .addMethod(
+            getCreateCustomerMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.secommerce.customer.grpc.CustomerGrpc.Customer,
+                com.google.protobuf.BoolValue>(
+                  this, METHODID_CREATE_CUSTOMER)))
+          .addMethod(
+            getUpdateCustomerMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq,
+                com.google.protobuf.BoolValue>(
+                  this, METHODID_UPDATE_CUSTOMER)))
           .build();
     }
   }
@@ -135,10 +265,34 @@ public final class SeGrpcServiceGrpc {
 
     /**
      */
-    public void getAllCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq request,
+    public void getCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request,
         io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customers> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetAllCustomersMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetCustomersMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getCustomerById(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request,
+        io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customer> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetCustomerByIdMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void createCustomer(com.secommerce.customer.grpc.CustomerGrpc.Customer request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCreateCustomerMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void updateCustomer(com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateCustomerMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -165,9 +319,30 @@ public final class SeGrpcServiceGrpc {
 
     /**
      */
-    public com.secommerce.customer.grpc.CustomerGrpc.Customers getAllCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq request) {
+    public com.secommerce.customer.grpc.CustomerGrpc.Customers getCustomers(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request) {
       return blockingUnaryCall(
-          getChannel(), getGetAllCustomersMethod(), getCallOptions(), request);
+          getChannel(), getGetCustomersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.secommerce.customer.grpc.CustomerGrpc.Customer getCustomerById(com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request) {
+      return blockingUnaryCall(
+          getChannel(), getGetCustomerByIdMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.BoolValue createCustomer(com.secommerce.customer.grpc.CustomerGrpc.Customer request) {
+      return blockingUnaryCall(
+          getChannel(), getCreateCustomerMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.BoolValue updateCustomer(com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq request) {
+      return blockingUnaryCall(
+          getChannel(), getUpdateCustomerMethod(), getCallOptions(), request);
     }
   }
 
@@ -194,14 +369,41 @@ public final class SeGrpcServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.secommerce.customer.grpc.CustomerGrpc.Customers> getAllCustomers(
-        com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.secommerce.customer.grpc.CustomerGrpc.Customers> getCustomers(
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetAllCustomersMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetCustomersMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.secommerce.customer.grpc.CustomerGrpc.Customer> getCustomerById(
+        com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetCustomerByIdMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.BoolValue> createCustomer(
+        com.secommerce.customer.grpc.CustomerGrpc.Customer request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCreateCustomerMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.BoolValue> updateCustomer(
+        com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateCustomerMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_GET_ALL_CUSTOMERS = 0;
+  private static final int METHODID_GET_CUSTOMERS = 0;
+  private static final int METHODID_GET_CUSTOMER_BY_ID = 1;
+  private static final int METHODID_CREATE_CUSTOMER = 2;
+  private static final int METHODID_UPDATE_CUSTOMER = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -220,9 +422,21 @@ public final class SeGrpcServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_GET_ALL_CUSTOMERS:
-          serviceImpl.getAllCustomers((com.secommerce.customer.grpc.CustomerGrpc.GetAllCustomersReq) request,
+        case METHODID_GET_CUSTOMERS:
+          serviceImpl.getCustomers((com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq) request,
               (io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customers>) responseObserver);
+          break;
+        case METHODID_GET_CUSTOMER_BY_ID:
+          serviceImpl.getCustomerById((com.secommerce.customer.grpc.CustomerGrpc.GetCustomersReq) request,
+              (io.grpc.stub.StreamObserver<com.secommerce.customer.grpc.CustomerGrpc.Customer>) responseObserver);
+          break;
+        case METHODID_CREATE_CUSTOMER:
+          serviceImpl.createCustomer((com.secommerce.customer.grpc.CustomerGrpc.Customer) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
+          break;
+        case METHODID_UPDATE_CUSTOMER:
+          serviceImpl.updateCustomer((com.secommerce.customer.grpc.CustomerGrpc.UpdateCustomerReq) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -285,7 +499,10 @@ public final class SeGrpcServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new SeGrpcServiceFileDescriptorSupplier())
-              .addMethod(getGetAllCustomersMethod())
+              .addMethod(getGetCustomersMethod())
+              .addMethod(getGetCustomerByIdMethod())
+              .addMethod(getCreateCustomerMethod())
+              .addMethod(getUpdateCustomerMethod())
               .build();
         }
       }

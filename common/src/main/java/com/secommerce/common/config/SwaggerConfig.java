@@ -1,32 +1,26 @@
 package com.secommerce.common.config;
 
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.customizers.OpenApiCustomiser;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class SwaggerConfig {
 
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.secommerce.*"))
-                .paths(PathSelectors.regex("/.*"))
-                .build()
-                .apiInfo(apiEndPointsInfo());
+    @Bean
+    public GroupedOpenApi apiEndPointsInfo() {
+        return GroupedOpenApi.builder()
+                .group("secommerce")
+                .packagesToScan("com.secommerce")
+                .pathsToMatch("/**")
+                .addOpenApiCustomiser(openApiCustomiser())
+                .build();
     }
 
-    private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Silly Ecommerece")
-                .description("Silly Ecommerce REST API")
-                .contact(new Contact("Dat Nguyen", "https://google.com.vn/", "test@gmail.com"))
-                .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-                .version("1.0.0")
-                .build();
+    private OpenApiCustomiser openApiCustomiser(){
+        return openApi -> openApi.info(new Info().title("Silly Ecommerece").version("v1.0.0").description("Silly Ecommerce REST API").contact(new Contact().email("test@gmail.com").name("Dat Nguyen")));
     }
 }
