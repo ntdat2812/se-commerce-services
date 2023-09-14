@@ -1,42 +1,31 @@
 package com.secommerce.product.entity;
 
-import lombok.*;
+import com.secommerce.common.entity.BaseEntity;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+@Data
 @Entity
-@Getter
-@Setter
-public class Category {
-    /* Category ID */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Category extends BaseEntity {
 
-    /* Category name */
     @Column(unique = true)
     private String name;
 
-    /* Category child */
+    private Boolean disable;
+
     @ManyToOne
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Category categoryParent;
+    private Category parentCategory;
 
-    private Boolean disable;
+    @OneToMany
+    private List<Product> products = new ArrayList<>();
 
-    /* Time created */
-    @CreatedDate
-    @Column(updatable = false)
-    private Timestamp createAt;
 
-    /* Time modified */
-    @LastModifiedDate
-    private Timestamp modifiedAt;
 
 }

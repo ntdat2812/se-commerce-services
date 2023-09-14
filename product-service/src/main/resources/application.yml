@@ -11,6 +11,9 @@ spring:
   application:
     name: product-service
 
+  jackson:
+    default-property-inclusion: non_null
+
   cloud:
     consul:
       config:

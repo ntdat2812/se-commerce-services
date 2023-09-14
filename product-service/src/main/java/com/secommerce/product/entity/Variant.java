@@ -9,11 +9,15 @@ import javax.persistence.ManyToOne;
 
 @Data
 @Entity
-public class OptionValue extends BaseEntity {
+public class Variant extends BaseEntity {
 
     private String name;
 
+    private Integer quantity;
+
+    private Double price;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    private Option option;
+    private Product product;
 
 }

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/product_db
+    url: jdbc:postgresql://localhost:5432/se_commerce_db
     username: dev
     password: password
   jpa:

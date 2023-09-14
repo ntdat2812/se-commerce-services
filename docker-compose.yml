@@ -11,6 +11,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: product_db
+      POSTGRES_DB: se_commerce_db
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: password

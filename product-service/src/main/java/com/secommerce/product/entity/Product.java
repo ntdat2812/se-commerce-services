@@ -1,77 +1,57 @@
 package com.secommerce.product.entity;
 
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.secommerce.common.entity.BaseEntity;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Data
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Table(name = "products")
-public class Product {
-    /* ID */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Product extends BaseEntity {
 
-    /* Product title */
+    @Column(unique = true)
+    private String sku;
+
     private String title;
 
-    /* Price */
-    @Column(columnDefinition="Decimal(10,2)")
-    private Double price;
-
-    /* Content for product */
     private String content;
 
-    /* Quantity */
-    private Integer quantity;
-
-    /* Description */
-    @Column(columnDefinition="text")
     private String description;
 
-    @ElementCollection
-    @CollectionTable(name = "image_url_product",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"), foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (product_id) references products(id) on delete cascade", name = "fk_product_id")
-    )
-    private List<String> imageList;
-
-    /* Main image url */
     private String thumbnailImage;
 
-    /* Views */
     private Integer views;
 
-    /* Variant Options*/
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    @OrderBy(value = "id asc")
-    private List<VariantOption> options;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<ProductVariant> variants;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Variant> variants = new ArrayList<>();
 
-    /* Category (mobile, accessories, components)*/
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id", foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (category_id) references category(id) on delete set null", name = "fk_product_type"))
-    private Category category;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "product_option", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "option_id"))
+    private Set<Option> options = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
-    private List<Attribute> specifications;
 
-    /* Time created */
-    @CreatedDate
-    @Column(updatable = false)
-    private Timestamp createAt;
+    public void addVariant(Variant variant) {
+        variants.add(variant);
+        variant.setProduct(this);
+    }
 
-    /* Time modified */
-    @LastModifiedDate
-    private Timestamp modifiedAt;
+    public void removeVariant(Variant variant) {
+        variants.remove(variant);
+        variant.setProduct(null);
+    }
+
+    public void addOption(Option option) {
+        options.add(option);
+        option.getProducts().add(this);
+    }
+
+    public void removeOption(Option option) {
+        options.remove(option);
+        option.getProducts().remove(this);
+    }
 }
