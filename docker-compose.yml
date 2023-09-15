@@ -1,16 +1,48 @@
+version: "3"
+
+networks:
+  se_network:
+    driver: bridge
+
 services:
   # consul
   se-consul:
     container_name: se-consul
     image: consul
+    restart: always
+    networks:
+      - se_network
     ports:
       - "8500:8500"
-  postgres-db:
-    container_name: postgres-db
+
+  # postgres
+  se-postgres:
+    container_name: se-postgres
     image: postgres
+    restart: always
+    networks:
+      - se_network
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: se_commerce_db
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: password
+
+
+  # microservices
+  product-service:
+    container_name: product-service
+    image: product-service
+    restart: always
+    networks:
+      - se_network
+    ports:
+      - "8081:8081"
+    depends_on:
+      - se-postgres
+    environment:
+      DB_URL: jdbc:postgresql://se-postgres/se_commerce_db
+      DB_USER: dev
+      DB_PASSWORD: password
+      CONSUL_HOST: se-consul

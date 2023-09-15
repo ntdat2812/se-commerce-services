@@ -1,11 +1,15 @@
 spring:
   datasource:
-    url: ${POSTGRESQL.URL_CONNECTION}
-    username: ${POSTGRESQL.USERNAME}
-    password: ${POSTGRESQL.PASSWORD}
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    consul:
+      host: ${CONSUL_HOST}
