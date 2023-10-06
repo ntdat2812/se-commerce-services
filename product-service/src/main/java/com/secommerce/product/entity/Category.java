@@ -27,5 +27,4 @@ public class Category extends BaseEntity {
     private List<Product> products = new ArrayList<>();
 
 
-
 }

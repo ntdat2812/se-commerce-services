@@ -2,6 +2,7 @@ package com.secommerce.product.service.impl;
 
 import com.secommerce.product.dto.request.product.CreateProductDTO;
 import com.secommerce.product.entity.Product;
+import com.secommerce.product.mapper.ProductMapper;
 import com.secommerce.product.repository.product.ProductRepository;
 import com.secommerce.product.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     @Override
     public Product getProductInfo(Long id) {
@@ -24,7 +26,8 @@ public class ProductServiceImpl implements ProductService {
     public boolean create(CreateProductDTO req) {
         log.info("vao day");
 
-
+        Product product = productMapper.createDtoToEntity(req);
+        productRepository.save(product);
 
         return true;
     }
