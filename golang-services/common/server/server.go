@@ -4,10 +4,15 @@ import (
 	"fmt"
 	"log"
 
-	"golang-services/common/infra/consul"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
+)
+
+type ServerType string
+
+const (
+	WebServerType  ServerType = "web"
+	GrpcServerType ServerType = "grpc"
 )
 
 type SeServer interface {
@@ -19,25 +24,33 @@ type Config struct {
 	Port        int
 	Host        string
 	ServiceName string
-	ConsulAddr  string
 	WebApp      *fiber.App
 }
 
-func New(config Config) SeServer {
+func New(serverType ServerType, config Config) SeServer {
 
-	Setup(config)
+	var server SeServer
 
-	return &WebServer{
-		port:      config.Port,
-		serviceId: fmt.Sprintf("%s-%s", config.ServiceName, uuid.New().String()),
-		app:       config.WebApp,
+	serviceId := fmt.Sprintf("%s-%s", config.ServiceName, uuid.New().String())
+
+	switch serverType {
+	case WebServerType:
+		{
+			server = &WebServer{
+				port:      config.Port,
+				serviceId: serviceId,
+				app:       config.WebApp,
+			}
+		}
+
+	case GrpcServerType:
+		{
+			server = &GRPCServer{serviceId: serviceId}
+		}
+
+	default:
+		log.Fatalf("server type [%s] is not supported", serverType)
 	}
-}
 
-func Setup(config Config) {
-	// init consul
-	err := consul.InitConsulClient(config.ConsulAddr)
-	if err != nil {
-		log.Fatalf("error when initializing consul client: %s", err)
-	}
+	return server
 }

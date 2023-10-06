@@ -19,14 +19,14 @@ func (w *WebServer) Serve() error {
 		w.port = 3000
 	}
 
-	address := fmt.Sprintf(":%d", w.port)
-
+	
 	// register to consul agent
 	err := consul.Client.Register(w.serviceId, w.port)
 	if err != nil {
 		return fmt.Errorf(fmt.Sprintf("err when register to consul agent: %v", err))
 	}
-
+	
+	address := fmt.Sprintf(":%d", w.port)
 	log.Printf("Starting web server at %s", address)
 
 	return w.app.Listen(address)

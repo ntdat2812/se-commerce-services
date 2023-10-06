@@ -8,6 +8,7 @@ type GRPCServer struct {
 	port       int
 	host       string
 	grpcServer *grpc.Server
+	serviceId  string
 }
 
 func (g *GRPCServer) Serve() error {
