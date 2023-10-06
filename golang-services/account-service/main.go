@@ -7,6 +7,7 @@ import (
 	"syscall"
 
 	"golang-services/common/constant"
+	"golang-services/common/infra"
 	"golang-services/common/server"
 
 	"github.com/gofiber/fiber/v2"
@@ -14,15 +15,29 @@ import (
 
 func main() {
 
-	signChan := make(chan os.Signal, 1)
 
+	// setup fiber app
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello hihi")
 	})
 
-	server := server.New(server.Config{
+	// server
+	run(app)
+
+}
+
+func run(app *fiber.App) {
+
+	// setup infra
+	infra.SetUp(infra.InfraConfig{})
+
+
+	// run server
+	signChan := make(chan os.Signal, 1)
+
+	server := server.New(server.WebServerType, server.Config{
 		Port:        8083,
 		ServiceName: constant.AccountService,
 		WebApp:      app,
@@ -38,5 +53,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
