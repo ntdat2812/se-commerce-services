@@ -29,28 +29,22 @@ type Config struct {
 
 func New(serverType ServerType, config Config) SeServer {
 
-	var server SeServer
-
 	serviceId := fmt.Sprintf("%s-%s", config.ServiceName, uuid.New().String())
 
 	switch serverType {
 	case WebServerType:
 		{
-			server = &WebServer{
-				port:      config.Port,
-				serviceId: serviceId,
-				app:       config.WebApp,
-			}
+			return &WebServer{port: config.Port, serviceId: serviceId, app: config.WebApp}
 		}
 
 	case GrpcServerType:
 		{
-			server = &GRPCServer{serviceId: serviceId}
+			return &GRPCServer{serviceId: serviceId}
 		}
 
 	default:
 		log.Fatalf("server type [%s] is not supported", serverType)
 	}
 
-	return server
+	return nil
 }

@@ -6,33 +6,44 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/gofiber/fiber/v2"
+
+	"golang-services/account-service/handler"
 	"golang-services/common/constant"
 	"golang-services/common/infra"
 	"golang-services/common/server"
-
-	"github.com/gofiber/fiber/v2"
+	"golang-services/common/web/healthcheck"
 )
 
 func main() {
 
+	// server
+	run(generateApp())
 
-	// setup fiber app
+}
+
+func generateApp() *fiber.App {
+
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello hihi")
-	})
+	api := app.Group("/account-service")
 
-	// server
-	run(app)
+	// health check route
+	api.Get("/health", healthcheck.HealthCheck)
 
+
+	// account group
+	accountGr := api.Group("/accounts")
+	accountGr.Post("/register", handler.Register)
+
+
+	return app
 }
 
 func run(app *fiber.App) {
 
 	// setup infra
 	infra.SetUp(infra.InfraConfig{})
-
 
 	// run server
 	signChan := make(chan os.Signal, 1)
@@ -47,6 +58,7 @@ func run(app *fiber.App) {
 	go func() {
 		<-signChan
 		server.Stop()
+		infra.Close()
 	}()
 
 	err := server.Serve()

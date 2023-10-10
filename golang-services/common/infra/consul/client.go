@@ -1,10 +1,10 @@
 package consul
 
-import "github.com/hashicorp/consul/api"
-
+import (
+	"github.com/hashicorp/consul/api"
+)
 
 var Client *client
-
 
 type ConsulClient interface {
 	Register(string, int) error
@@ -15,7 +15,7 @@ type client struct {
 	consul *api.Client
 }
 
-func InitConsulClient(addr string) (error) {
+func InitConsulClient(addr string) error {
 
 	if Client != nil {
 		return nil
@@ -26,7 +26,7 @@ func InitConsulClient(addr string) (error) {
 
 	c, err := api.NewClient(config)
 	if err != nil {
-		return  err
+		return err
 	}
 
 	Client = &client{consul: c}

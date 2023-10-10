@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/gofiber/fiber/v2"
 	"golang-services/common/infra/consul"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type WebServer struct {
@@ -33,6 +34,8 @@ func (w *WebServer) Serve() error {
 }
 
 func (w *WebServer) Stop() error {
+
+	// deregister consul
 	err := consul.Client.DeRegister(w.serviceId)
 	if err != nil {
 		log.Fatalf("error when de-register service from consul agent %v", err)
