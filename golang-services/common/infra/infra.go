@@ -1,10 +1,10 @@
 package infra
 
 import (
-	"log"
 
-	"golang-services/common/infra/consul"
+	// "golang-services/common/infra/consul"
 	"golang-services/common/infra/db"
+	"golang-services/common/infra/log"
 	"github.com/joho/godotenv"
 )
 
@@ -16,16 +16,17 @@ func SetUp(config InfraConfig) {
 
 	// load .env file
 	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found")
+		log.Logger.Error("No .env file found")
 	}
 
 	// connect to mongo db
 	db.InitMongoClient()
 
 	// init consul
-	if err := consul.InitConsulClient(config.ConsulAddr); err != nil {
-		log.Fatalf("error when initializing consul client: %s", err)
-	}
+	// if err := consul.InitConsulClient(config.ConsulAddr); err != nil {
+	// 	log.Logger.Fatalf("error when initializing consul client: %s", err)
+	// 	panic(err)
+	// }
 	
 
 

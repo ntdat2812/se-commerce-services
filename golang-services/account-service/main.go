@@ -31,11 +31,10 @@ func generateApp() *fiber.App {
 	// health check route
 	api.Get("/health", healthcheck.HealthCheck)
 
-
 	// account group
 	accountGr := api.Group("/accounts")
 	accountGr.Post("/register", handler.Register)
-
+	accountGr.Get("", handler.List)
 
 	return app
 }

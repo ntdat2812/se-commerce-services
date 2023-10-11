@@ -1,26 +1,27 @@
 package handler
 
 import (
-	"golang-services/account-service/model"
+	"golang-services/account-service/dto"
 	"golang-services/account-service/repository"
+	"golang-services/common/infra/log"
+	"golang-services/common/web/response"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-type accountDTO struct {
-	UserName string `json:"user_name"`
-	Password string `json:"password"`
-}
-
 func Register(c *fiber.Ctx) error {
 
-	dto := new(accountDTO)
-
-	if err := c.BodyParser(dto); err != nil {
-		return err
+	// parse request
+	req := new(dto.RegisterDTO)
+	if err := c.BodyParser(req); err != nil {
+		return c.JSON(response.BadRequestResponse())
 	}
 
-	repository.CreateAccount(model.Account{UserName: dto.UserName, Password: dto.Password})
+	err := repository.CreateAccount(c.Context(), dto.BuildRegisterAccountModel(req))
+	if err != nil {
+		log.Logger.Error(err)
+		return c.JSON(response.InternalErrorResponse())
+	}
 
-	return c.JSON(fiber.Map{})
+	return c.JSON(response.SuccessfulResponse())
 }

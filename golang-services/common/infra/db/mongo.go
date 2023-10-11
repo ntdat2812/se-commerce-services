@@ -2,13 +2,14 @@ package db
 
 import (
 	"context"
-	"log"
+	
 	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"golang-services/common/constant"
+	"golang-services/common/infra/log"
 )
 
 var MongoClient *mongo.Client
@@ -17,7 +18,7 @@ func InitMongoClient() error {
 
 	uri := os.Getenv("MONGODB_URI")
 	if uri == "" {
-		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
+		log.Logger.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
 	}
 
 
@@ -27,7 +28,7 @@ func InitMongoClient() error {
 		panic(err)
 	}
 
-	log.Println("connect to MongoDB successfully")
+	log.Logger.Info("connect to MongoDB successfully")
 
 
 	return nil
